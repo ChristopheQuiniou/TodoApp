@@ -1,47 +1,27 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+<script>
+  import Tache from "./components/Tache.vue"
+  import FormulaireAjout from "./components/FormulaireAjout.vue"
+  
+  export default {
+    components: {
+      Tache,
+      FormulaireAjout
+    },
+    data(){
+      return{
+        taches: [{titre:"ff",description:"la description"}]
+      }
+    }
+  }
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <h1>
+    TodoApp
+  </h1>
+  <p v-if="taches.length == 0">
+    Ma liste de tâches est vide 😊
+  </p>
+	<Tache v-for="tache in taches" :titre="tache.titre" description="tache.description"/>
+  <FormulaireAjout taches="taches"/>
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
